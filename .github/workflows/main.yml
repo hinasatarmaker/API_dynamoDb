@@ -22,8 +22,6 @@ jobs:
         pip install -r requirements.txt
     - name: install serverless
       run: npm i -g serverless
-    - name: install serverless-wsgi plugins
-      run: sls plugin install -n serverless-wsgi
     - name: severless deploy
       run: sls deploy
       env:
