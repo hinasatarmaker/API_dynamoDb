@@ -1,0 +1,22 @@
+#serverless.yml
+service: serverless-flask-container
+
+provider:
+  name: aws
+  architecture: arm64
+  runtime: python3.9
+  stage: dev
+  region: eu-west-1
+  ecr:
+    images:
+      crudapi:
+        path: ./
+
+functions:
+  crudapp:
+    image:
+      name: crudapi
+    timeout: 30
+    events:
+      - http: ANY /
+      - http: 'ANY /{proxy+}'
