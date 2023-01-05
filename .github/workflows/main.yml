@@ -20,8 +20,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: serverless deploy
-      run: sls deploy
+    - name: install serverless
+      run: npm i -g serverless
+    - name: severless deploy
+      run: sls deploy --verbose --force
       env:
         # SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
         # or if using AWS credentials directly
