@@ -21,6 +21,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    - name: Create docker images
+      run: docker build -t 781892149061.dkr.ecr.eu-west-1.amazonaws.com/test_lambda:lambda .
+    - name: Upload docker into ECR
+      run: docker push 781892149061.dkr.ecr.eu-west-1.amazonaws.com/test_lambda:lambda
     - name: install serverless
       run: npm i -g serverless
     - name: severless deploy
