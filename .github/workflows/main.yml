@@ -21,7 +21,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: install serverless
-      run: npm i -g serverless
+      run: sls plugin install -n serverless-wsgi
     - name: severless deploy
       run: sls deploy
       env:
