@@ -15,7 +15,7 @@ jobs:
     - name: Set up Python 3.9
       uses: actions/setup-python@v3
       with:
-        architecture: 'x64'
+        architecture: '64'
         python-version: 3.9
     - name: Install dependencies
       run: |
@@ -23,6 +23,8 @@ jobs:
         pip install -r requirements.txt
     - name: install serverless
       run: npm i -g serverless
+    - name: calling cmd
+      run: CMD ["app.handler"]
     - name: severless deploy
       run: sls deploy
       env:
