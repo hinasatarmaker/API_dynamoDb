@@ -16,6 +16,11 @@ functions:
   crudapp:
     image:
       name: crudapi
+      command:
+        - app.greeter
+      entryPoint:
+        - '/lambda-entrypoint.sh'
+
     timeout: 30
     events:
       - http: ANY /
