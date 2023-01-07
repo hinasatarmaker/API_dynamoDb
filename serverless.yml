@@ -17,7 +17,7 @@ functions:
     image:
       name: crudapi
       command:
-        - app.greeter
+        - app.handler
       entryPoint:
         - '/lambda-entrypoint.sh'
 
