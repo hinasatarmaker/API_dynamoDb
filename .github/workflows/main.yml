@@ -22,6 +22,10 @@ jobs:
         pip install -r requirements.txt
     - name: install serverless
       run: npm i -g serverless
+    - name: copying app.py file
+      run: COPY app.py ${LAMBDA_TASK_ROOT}
+    - name: calling cmd
+      run: CMD ["app.handler"]
     - name: severless deploy
       run: sls deploy
       env:
