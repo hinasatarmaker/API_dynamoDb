@@ -15,6 +15,7 @@ jobs:
     - name: Set up Python 3.9
       uses: actions/setup-python@v3
       with:
+        architechure: x64
         python-version: 3.9
     - name: Install dependencies
       run: |
@@ -22,8 +23,6 @@ jobs:
         pip install -r requirements.txt
     - name: install serverless
       run: npm i -g serverless
-    - name: copying app.py file
-      run: COPY app.py ${LAMBDA_TASK_ROOT}
     - name: calling cmd
       run: CMD ["app.handler"]
     - name: severless deploy
