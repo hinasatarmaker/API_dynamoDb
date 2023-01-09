@@ -1,5 +1,5 @@
 FROM public.ecr.aws/lambda/python:3.8
-# COPY file1.py ${LAMBDA_TASK_ROOT}
+COPY file1.py ${LAMBDA_TASK_ROOT}
 COPY app.py ${LAMBDA_TASK_ROOT}
 # COPY config.py ${LAMBDA_TASK_ROOT}
 
