@@ -2,6 +2,10 @@ import file1 as dynamodb
 from flask import Flask
 from flask import request
 import serverless_wsgi
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 app = Flask(__name__) 
 @app.route('/')
@@ -109,3 +113,7 @@ def delete_movie(id):
 def handler(event, context):
 	print("hello from lambda")
 	return serverless_wsgi.handle_request(app, event, context)
+    logger.info('## ENVIRONMENT VARIABLES')
+    logger.info(os.environ)
+    logger.info('## EVENT')
+    logger.info(event)
