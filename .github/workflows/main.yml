@@ -15,7 +15,7 @@ jobs:
     - name: Set up Python 3.9
       uses: actions/setup-python@v3
       with:
-        # architechure: x64
+        architechure: arm64
         python-version: 3.9
     - name: Install dependencies
       run: |
