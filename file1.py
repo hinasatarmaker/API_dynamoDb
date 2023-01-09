@@ -18,7 +18,7 @@ resource = resource(
 # function for creating table
 def create_table_movie():   
    table = resource.create_table(
-       TableName = 'NewMovie', # Name of the table
+       TableName = os.environ['Movie'], # Name of the table
        KeySchema = [
            {
                'AttributeName': 'id',

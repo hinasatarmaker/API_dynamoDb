@@ -13,17 +13,18 @@ def root_route():
  
 @app.route('/getmovie/<id>', methods=['GET'])
 def get_movie(id):
-   print(id)
-   response = dynamodb.read_from_movie(id)
-   print(response)
-   if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
+    print(id)
+    response = dynamodb.read_from_movie(id)
+    print(response)
+    if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
        if ('Item' in response):
            return { 'Item': response['Item'] }
        return { 'msg' : 'Item not found!' }
-   return {
-       'msg': 'error occurred',
-       'response': response
-   }
+    return response
+#    return {
+#        'msg': 'error occurred',
+#        'response': response
+#    }
 
 # @app.route('/movie', methods=['POST'])
 # def add_movie():
@@ -55,10 +56,11 @@ def add_movie():
         return {
            'msg': 'Add Movie successful'
         }
-    return { 
-       'msg': 'error occurred',
-       'response': response
-   }
+    return response
+    # return { 
+    #    'msg': 'error occurred',
+    #    'response': response
+#    }
 
 @app.route('/updatemovie/<id>', methods=['GET','PUT'])
 def update_movie(id):
