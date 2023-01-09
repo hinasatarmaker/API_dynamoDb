@@ -15,6 +15,7 @@ def root_route():
 def get_movie(id):
    print(id)
    response = dynamodb.read_from_movie(id)
+   print(response)
    if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
        if ('Item' in response):
            return { 'Item': response['Item'] }
