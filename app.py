@@ -113,7 +113,5 @@ def delete_movie(id):
 def handler(event, context):
 	print("hello from lambda")
 	return serverless_wsgi.handle_request(app, event, context)
-    logger.info('## ENVIRONMENT VARIABLES')
-    logger.info(os.environ)
-    logger.info('## EVENT')
-    logger.info(event)
+    print(app)
+    
