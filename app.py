@@ -1,4 +1,4 @@
-import file1 as dynamodb
+# import file1 as dynamodb
 from flask import Flask
 from flask import request
 import serverless_wsgi
