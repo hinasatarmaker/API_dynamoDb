@@ -18,7 +18,7 @@ resource = resource(
 # function for creating table
 def create_table_movie():   
    table = resource.create_table(
-       TableName = 'Movie', # Name of the table
+       TableName = 'NewMovie', # Name of the table
        KeySchema = [
            {
                'AttributeName': 'id',
@@ -81,33 +81,6 @@ def update_in_movie(id, data:dict):
        ReturnValues = "UPDATED_NEW"  # returns the new updated values
    )
    return response
-
-# def update_in_movie(id, data:dict):
-#     print(data)
-#     key_id = data['id']
-#     print(key_id)
-#     if id == key_id:
-#         response = MovieTable.update_item(
-#            Key = {
-#                'id': int(id)
-#             },
-#             AttributeUpdates={
-#                'title': {
-#                    'Value'  : data['title'],
-#                    'Action' : 'PUT' 
-#                 },
-#                'director': {
-#                    'Value'  : data['director'],
-#                    'Action' : 'PUT'
-#                }
-#             },
- 
-#             ReturnValues = "UPDATED_NEW"  # returns the new updated values
-#         )
-#         return response
-#     return {
-#     'msg'       : 'record not present in table'
-#    } 
 
 #function for delete item from table
 def delete_from_movie(id):

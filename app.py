@@ -14,9 +14,7 @@ def root_route():
 @app.route('/getmovie/<id>', methods=['GET'])
 def get_movie(id):
    print(id)
-   data = request.get_json()
-   key_id = data['id']
-   response = dynamodb.read_from_movie(key_id)
+   response = dynamodb.read_from_movie(id)
    print(response)
    if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
        if ('Item' in response):
@@ -66,9 +64,7 @@ def add_movie():
 def update_movie(id):
     # data = request.get_json()
     # response = dynamodb.update_in_movie(id, data)
-    data = request.get_json()
-    key_id = data['id']
-    response = dynamodb.read_from_movie(key_id)
+    response = dynamodb.read_from_movie(id)
     if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
         if ('Item' in response):
             data = request.get_json()
@@ -89,26 +85,9 @@ def update_movie(id):
     # } 
 
 
-# @app.route('/updatemovie/<id>', methods=['GET','PUT'])
-# def update_movie(id):
-#     data = request.get_json()
-#     response = dynamodb.update_in_movie(id, data)
-#     if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
-#         return {
-#            'msg'                : 'update successful',
-#            'response'           : response['ResponseMetadata'],
-#            'ModifiedAttributes' : response['Attributes']
-#         }
-#     return {
-#         'msg'      : 'error occurred',
-#            'response' : response
-#    } 
-
 @app.route('/deletemovie/<int:id>', methods=['DELETE'])
 def delete_movie(id):
-    data = request.get_json()
-    key_id = data['id']
-    response = dynamodb.read_from_movie(key_id)
+    response = dynamodb.read_from_movie(id)
     # response = dynamodb.delete_from_movie(id)
     if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
         if ('Item' in response):
