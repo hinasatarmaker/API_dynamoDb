@@ -18,7 +18,7 @@ resource = resource(
 # function for creating table
 def create_table_movie():   
    table = resource.create_table(
-       TableName = os.environ['Movie'], # Name of the table
+       TableName = 'Movie', # Name of the table
        KeySchema = [
            {
                'AttributeName': 'id',
@@ -81,6 +81,7 @@ def update_in_movie(id, data:dict):
        ReturnValues = "UPDATED_NEW"  # returns the new updated values
    )
    return response
+
 
 #function for delete item from table
 def delete_from_movie(id):

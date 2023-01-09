@@ -1,4 +1,6 @@
 FROM public.ecr.aws/lambda/python:3.8
+WORKDIR /code
+COPY /src /code
 COPY file1.py ${LAMBDA_TASK_ROOT}
 COPY app.py ${LAMBDA_TASK_ROOT}
 # COPY config.py ${LAMBDA_TASK_ROOT}
