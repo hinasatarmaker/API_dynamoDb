@@ -10,13 +10,8 @@ provider:
   iamRoleStatements:
     - Effect: "Allow"
       Action:
-       - dynamodb:Query
-       - dynamodb:Scan
-       - dynamodb:GetItem
-       - dynamodb:PutItem
-       - dynamodb:UpdateItem
-       - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:eu-west-1:781892149061:table/Movie"
+       - dynamodb:*
+      Resource: "*"
   ecr:
     images:
       crudapi:
