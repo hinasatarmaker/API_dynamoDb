@@ -21,7 +21,7 @@ REGION_NAME = 'eu-west-1'
 # function for creating table
 def create_table_movie():   
    table = dynamodb.create_table(
-       TableName = 'Movie', # Name of the table
+    #    TableName = 'DYNAMODB_TABLE', # Name of the table
        KeySchema = [
            {
                'AttributeName': 'id',
@@ -42,7 +42,7 @@ def create_table_movie():
    return table
 
 # MovieTable = resource.Table('Movie')
-MovieTable = dynamodb.Table(os.environ['Movie'])
+MovieTable = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
 
 
 # function for add items to table
