@@ -1,5 +1,8 @@
-from boto3 import resource
+# from boto3 import resource
 import os
+
+import boto3
+dynamodb = boto3.resource('dynamodb')
 # import config
 
 # AWS_ACCESS_KEY_ID = config.AWS_ACCESS_KEY_ID
@@ -9,36 +12,38 @@ import os
 AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
 AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
 REGION_NAME = 'eu-west-1'
-resource = resource(
-   'dynamodb',
-   aws_access_key_id     = AWS_ACCESS_KEY_ID,
-   aws_secret_access_key = AWS_SECRET_ACCESS_KEY,
-   region_name           = REGION_NAME
-)
+# resource = resource(
+#    'dynamodb',
+#    aws_access_key_id     = AWS_ACCESS_KEY_ID,
+#    aws_secret_access_key = AWS_SECRET_ACCESS_KEY,
+#    region_name           = REGION_NAME
+# )
 # function for creating table
-def create_table_movie():   
-   table = resource.create_table(
-       TableName = 'Movie', # Name of the table
-       KeySchema = [
-           {
-               'AttributeName': 'id',
-               'KeyType'      : 'number' #RANGE = sort key, HASH = partition key
-           }
-       ],
-       AttributeDefinitions = [
-           {
-               'AttributeName': 'id', # Name of the attribute
-               'AttributeType': 'N'   # N = Number (B= Binary, S = String)
-           }
-       ],
-       ProvisionedThroughput={
-           'ReadCapacityUnits'  : 10,
-           'WriteCapacityUnits': 10
-       }
-   )
-   return table
+# def create_table_movie():   
+#    table = resource.create_table(
+#        TableName = 'Movie', # Name of the table
+#        KeySchema = [
+#            {
+#                'AttributeName': 'id',
+#                'KeyType'      : 'number' #RANGE = sort key, HASH = partition key
+#            }
+#        ],
+#        AttributeDefinitions = [
+#            {
+#                'AttributeName': 'id', # Name of the attribute
+#                'AttributeType': 'N'   # N = Number (B= Binary, S = String)
+#            }
+#        ],
+#        ProvisionedThroughput={
+#            'ReadCapacityUnits'  : 10,
+#            'WriteCapacityUnits': 10
+#        }
+#    )
+#    return table
 
-MovieTable = resource.Table('Movie')
+# MovieTable = resource.Table('Movie')
+MovieTable = dynamodb.Table(os.environ['Movie'])
+
 
 # function for add items to table
 def write_to_movie(id, title, director):
