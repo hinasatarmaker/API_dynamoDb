@@ -19,27 +19,27 @@ REGION_NAME = 'eu-west-1'
 #    region_name           = REGION_NAME
 # )
 # function for creating table
-# def create_table_movie():   
-#    table = resource.create_table(
-#        TableName = 'Movie', # Name of the table
-#        KeySchema = [
-#            {
-#                'AttributeName': 'id',
-#                'KeyType'      : 'number' #RANGE = sort key, HASH = partition key
-#            }
-#        ],
-#        AttributeDefinitions = [
-#            {
-#                'AttributeName': 'id', # Name of the attribute
-#                'AttributeType': 'N'   # N = Number (B= Binary, S = String)
-#            }
-#        ],
-#        ProvisionedThroughput={
-#            'ReadCapacityUnits'  : 10,
-#            'WriteCapacityUnits': 10
-#        }
-#    )
-#    return table
+def create_table_movie():   
+   table = dynamodb.create_table(
+       TableName = 'Movie', # Name of the table
+       KeySchema = [
+           {
+               'AttributeName': 'id',
+               'KeyType'      : 'number' #RANGE = sort key, HASH = partition key
+           }
+       ],
+       AttributeDefinitions = [
+           {
+               'AttributeName': 'id', # Name of the attribute
+               'AttributeType': 'N'   # N = Number (B= Binary, S = String)
+           }
+       ],
+       ProvisionedThroughput={
+           'ReadCapacityUnits'  : 10,
+           'WriteCapacityUnits': 10
+       }
+   )
+   return table
 
 # MovieTable = resource.Table('Movie')
 MovieTable = dynamodb.Table(os.environ['Movie'])
