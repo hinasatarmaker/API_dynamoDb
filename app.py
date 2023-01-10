@@ -2,12 +2,10 @@ import file1 as dynamodb
 from flask import Flask
 from flask import request
 import serverless_wsgi
-import logging
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
 
 app = Flask(__name__) 
+
 @app.route('/')
 def root_route():
    print("Hello World!") 
@@ -18,6 +16,7 @@ def root_route():
 @app.route('/getmovie/<id>', methods=['GET'])
 def get_movie(id):
     print(id)
+    print(app)
     response = dynamodb.read_from_movie(id)
     print(response)
     if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
@@ -25,24 +24,7 @@ def get_movie(id):
            return { 'Item': response['Item'] }
        return { 'msg' : 'Item not found!' }
     return response
-#    return {
-#        'msg': 'error occurred',
-#        'response': response
-#    }
 
-# @app.route('/movie', methods=['POST'])
-# def add_movie():
-#    data = request.get_json()
-#    print(data)
-#    response = dynamodb.write_to_movie(data['id'], data['title'], data['director'])   
-#    if (response['ResponseMetadata']['HTTPStatusCode'] == 200):
-#        return {
-#            'msg': 'Add Movie successful',
-#        }
-#    return { 
-#        'msg': 'error occurred',
-#        'response': response
-#    }
 @app.route('/movie', methods=['GET','POST'])
 def add_movie():
 #    print(data)
@@ -113,5 +95,4 @@ def delete_movie(id):
 def handler(event, context):
 	print("hello from lambda")
 	return serverless_wsgi.handle_request(app, event, context)
-    print(app)
-    
+
